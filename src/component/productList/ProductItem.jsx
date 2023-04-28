@@ -3,13 +3,18 @@ import React, { Component } from "react";
 
 class ProductItem extends Component {
   render() {
-    let { prodInfo, themGioHang } = this.props;
+    let { prodInfo, themGioHang , xemChiTiet} = this.props;
+    
     return ( 
       <div className="border shadow-lg pb-3">
         <img src={prodInfo.image} alt="" />
-        <div className="ml-4">
+        <div className="mx-4">
           <h3 className="text-lg">{prodInfo.name}</h3>
           <p className="py-2">{prodInfo.price}</p>
+          <div className="flex justify-between">
+          <button className=" py-3 px-5 bg-gray-800 flex text-white rounded-lg" onClick={()=>{
+            xemChiTiet(prodInfo)
+          }}>Chi tiết</button>
           <button className=" py-3 px-5 bg-gray-800 flex text-white rounded-lg" onClick={()=>{
             themGioHang(prodInfo)
           }}> add to cart
@@ -28,6 +33,7 @@ class ProductItem extends Component {
               />
             </svg>
           </button>
+          </div>
         </div>
       </div>
     );

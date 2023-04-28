@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import data from "../../data.json";
 import ProductItem from "./ProductItem";
 import ProdCart from "../productCart/ProdCart";
+import ProductDetail from "../productCart/ProductDetail";
 class ProductList extends Component {
   state = {
     arrGioHang: [
@@ -15,6 +16,17 @@ class ProductList extends Component {
         image: "https://svcy3.myclass.vn/images/adidas-prophere.png",
       },
     ],
+    spChiTiet: {
+      id: 1,
+      name: "Adidas Prophere",
+      alias: "adidas-prophere",
+      price: 350,
+      description: "The adidas Primeknit upper wraps the foot with a supportive fit that enhances movement.\r\n\r\n",
+      shortDescription: "The midsole contains 20% more Boost for an amplified Boost feeling.\r\n\r\n",
+      quantity: 995,
+      soLuong: 0,
+      image: "https://svcy3.myclass.vn/images/adidas-prophere.png"
+    },
   };
   xoaHetSP = ()=>{
     this.setState({
@@ -64,6 +76,11 @@ class ProductList extends Component {
       arrGioHang: gioHang,
     });
   };
+  xemChiTiet = (spClick) =>{
+    this.setState({
+      spChiTiet: spClick
+    })
+  }
   render() {
     return (
       <div className="w-[1028px] mx-auto ">
@@ -76,11 +93,12 @@ class ProductList extends Component {
             xoaHetSP={this.xoaHetSP}
           />
         </div>
+        <ProductDetail spChiTiet={this.state.spChiTiet}/>
         <div className="grid grid-cols-3 gap-3 flex-wrap p-4 border">
           {data.map((item) => {
             return (
               <div key={item.id}>
-                <ProductItem prodInfo={item} themGioHang={this.themGioHang} />
+                <ProductItem prodInfo={item} themGioHang={this.themGioHang}  xemChiTiet={this.xemChiTiet}/>
               </div>
             );
           })}
